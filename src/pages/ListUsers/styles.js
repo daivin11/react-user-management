@@ -6,13 +6,13 @@ export const Container = styled.div`
   align-items: center;
   gap: 20px;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #080131;
   min-height: 100vh;
 `;
 
 export const Title = styled.h2`
   font-size: 38px;
-  color: #333;
+  color: #f3e7e7;
   margin-top: 10px;
   font-style: normal;
   text-align: center;

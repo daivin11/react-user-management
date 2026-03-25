@@ -3,6 +3,7 @@ import api from "../../services/api";
 import TopBackground from "../../components/TopBackground";
 import Button from "../../components/Button";
 import Trash from "../../assets/trash.svg";
+import { useNavigate } from "react-router-dom";
 
 import {
   Title,
@@ -15,6 +16,7 @@ import {
 
 function ListUsers() {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getUsers() {
@@ -28,6 +30,16 @@ function ListUsers() {
 
     getUsers();
   }, []);
+
+  async function deleteUser(id) {
+    try {
+      await api.delete(`/usuarios/${id}`);
+      setUsers(users.filter((user) => user.id !== id));
+    } catch (error) {
+      console.error("Erro ao deletar usuário:", error);
+    }
+  }
+
 
   return (
     <Container>
@@ -46,12 +58,14 @@ function ListUsers() {
               <p>Email: {user.email}</p>
             </div>
 
-            <TrashIcon src={Trash} alt="icone-lixo" />
+            <TrashIcon src={Trash} alt="icone-lixo" onClick={() => deleteUser(user.id)} />
           </CardUsers>
         ))}
       </ContainerUsers>
 
-      <Button type="button">Voltar</Button>
+      <Button type="button" onClick={() => navigate(-1)}>
+        Voltar
+      </Button>
     </Container>
   );
 }
