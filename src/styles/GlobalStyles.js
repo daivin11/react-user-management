@@ -1,4 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components"; // Importa função para criar estilos globais
+
+// Define os estilos globais para toda a aplicação
 
 export const GlobalStyles = createGlobalStyle`
   * {
